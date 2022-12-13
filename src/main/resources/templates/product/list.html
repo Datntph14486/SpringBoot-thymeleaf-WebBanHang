@@ -1,0 +1,118 @@
+<!--<!DOCTYPE html>-->
+
+
+<body>
+<style>
+    .card__delete {
+        position: relative;
+    }
+
+    .text__delete {
+        font-size: 2rem;
+        font-weight: 500;
+        color: #EEEEEE;
+        position: absolute;
+        z-index: 999999;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .block__delete {
+        filter: brightness(0.5) blur(3px);
+    }
+</style>
+
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index ::dynamic(~{::main})}">
+    <main>
+        <div class="row ">
+            <div th:each="p: ${listProduct}" class="col-sm-4" style="margin-top: 20px; width: 32%;">
+
+                <div th:if="${p.available==true}" class="card  text-center ">
+                    <div class="bg-success">
+                        <div class="card-header fs-6" style="color: aliceblue; font-size: smaller"
+                             th:utext="${p.name}"></div>
+                    </div>
+                    <div class="card-body">
+                        <a th:href="@{|/product/detail/${p.id}|}">
+                            <img style="height: 280px; max-width: 90%" th:src="@{|/image/${p.image}|}">
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <h5 style=" color: red">$[[${p.price}]]</h5>
+                        <button class="btn btn-success" th:attr="ng-click=@{|cart.add(${p.id})|}"><i
+                                class="bi bi-cart4"></i></button>
+                        <button class="btn btn-success"><i class="bi bi-bag-heart-fill"></i></button>
+
+                    </div>
+                </div>
+<!------------------------------------------------------------------------->
+                <div th:if="${p.available==false}" class="card card__delete">
+                    <div class="text__delete">Hết Hàng</div>
+                    <div class="block__delete">
+                        <div class="bg-success">
+                            <div class="card-header fs-6" style="color: aliceblue; font-size: smaller"
+                                 th:utext="${p.name}"></div>
+                        </div>
+                        <div class="card-body">
+                            <a th:href="@{|/product/detail/${p.id}|}">
+                                <img style="height: 280px; max-width: 90%" th:src="@{|/image/${p.image}|}">
+                            </a>
+                        </div>
+                        <div class="card-footer">
+                            <h5 style=" color: red">$[[${p.price}]]</h5>
+                            <button class="btn btn-success" th:attr="ng-click=@{|cart.add(${p.id})|}"><i
+                                    class="bi bi-cart4"></i></button>
+                            <button class="btn btn-success"><i class="bi bi-bag-heart-fill"></i></button>
+
+                        </div>
+                    </div>
+
+
+<!--                    <div class="card card__delete">-->
+<!--                        <div class="text__delete">Hết Hàng</div>-->
+<!--                        <div class="block__delete">-->
+<!--                            <a href="/AssignmentJava5/admin/card-detail/${x.id}">-->
+<!--                                <div class="card__top">-->
+<!--                                    <img src="${pageContext.request.contextPath}/img/${x.image}" />-->
+<!--                                </div>-->
+<!--                                <div class="card__main">-->
+<!--                                    <div id="js-title" class="card__main-title">${x.name }</div>-->
+<!--                                    <div class="card__main-like">-->
+<!--                                        <i class="fa-solid fa-heart"></i>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+
+
+            <div th:if="${totalPage}" style="margin-top: 20px" class="card">
+                <div class=" card-footer text-center">
+                    <a class="btn btn-danger" th:href="@{/product/list?p=1}">
+                        <i class="bi bi-arrow-up-square-fill"></i>
+                    </a>
+                    <a th:href="@{|/product/list?p=${currentPage <=0?totalPage:currentPage}|}" class="btn btn-primary">
+                        <i class="bi bi-arrow-bar-left"></i>
+                    </a>
+                    <button class="btn btn-success">
+                        [[${currentPage+1}]] of [[${totalPage}]]
+
+                    </button>
+                    <a th:href="@{|/product/list?p=${currentPage+2 >totalPage?1:currentPage+2}|}"
+                       class="btn btn-primary">
+                        <i class="bi bi-arrow-bar-right"></i>
+                    </a>
+                    <a th:href="@{|/product/list?p=${totalPage}|}" class="btn btn-danger">
+                        <i class="bi bi-arrow-down-square-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+</body>
+

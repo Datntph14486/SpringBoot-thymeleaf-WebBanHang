@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <div class="panel panel-primary border border-5" style="margin-top: 20px">
+    <div class="panel-body text-center bg-Light" >
+      <a href="/cart/view"><h5>
+        <button class="btn border-0  btn-outline-secondary">
+          <h3>Giỏ Hàng</h3>
+          <h4>
+            <i class="bi bi-cart4"></i>
+            {{cart.count}} Sản Phẩm X ${{cart.amount}}
+          </h4>
+        </button>
+      </h5> </a>
+    </div>
+  </div>
+  <br>
+
+  <div>
+    <ul class="list-group card bg-Light">
+      <div data-bs-toggle="collapse" data-bs-target="#monhoc">
+        <li class="list-group-item "><button
+                class="btn border-0  btn-outline-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+               fill="currentColor" class="bi bi-card-list"
+               viewBox="0 0 16 16">
+            <path
+                    d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+            <path
+                    d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+          </svg>
+          Danh sách Sản Phẩm
+        </button></li>
+      </div>
+      <!---------->
+      <div class="card-collapse" id="monhoc">
+        <th:block th:each="c: ${category}">
+          <li class="list-group-item"><button
+                  class="btn border-0  btn-outline-secondary">
+            <a th:utext="${c.name}" class="btn border-0 btn-outline-secondary"
+               th:href="@{|/product?cid=${c.id}|}"></a>
+          </button></li>
+        </th:block>
+      </div>
+
+    </ul>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{ :: main})}">
+
+    <main  style="margin-top: 20px">
+       <div class="card" th:fragment="shopping-cart">
+           <div class="card-header bg-success text-Light">
+               <h3>Giỏ Hàng</h3>
+           </div>
+
+           <div ng-if="cart.items.length" class="card-body">
+               <table class="table table-striped table-hover">
+                   <thead>
+                   <tr>
+                       <th>ID</th>
+                       <th>TÊN SẢN PHẨM</th>
+                       <th>GIÁ</th>
+                       <th>SỐ LƯỢNG</th>
+                       <th>THÀNH TIỀN</th>
+                       <th>CHỨC NĂNG</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   <tr ng-repeat="product in cart.items" >
+                       <th>{{product.id}}</th>
+                       <th>{{product.name}}</th>
+                       <th>{{product.price}}</th>
+                       <th> <input ng-change="cart. saveToLocalStorage()" ng-model="product.qty" type="number" min="1"></th>
+
+                       <th style="color:red">${{product.qty*product.price}}</th>
+                       <th> <button ng-click="cart.remove(product.id)"  class="btn btn-Danger"><i class="bi bi-trash3-fill"></i></button> </th>
+                   </tr>
+                   </tbody>
+               </table>
+
+           </div>
+
+           <div ng-if="cart.items.length" class="card-footer">
+               <button ng-click="cart.clear()" class="btn  btn-Danger"><i class="bi bi-trash3-fill"></i>Clear</button>
+               <button  class="btn btn-Success "><i class="bi bi-box-arrow-right"></i><a style="color: aliceblue; text-decoration: none" th:href="@{/order/checkout}">Checkout</a></button>
+           </div>
+
+       </div>
+
+        <div ng-if="!cart.items.length">
+            <h4 style="margin-top: 40px; color: red">Vui lòng chọn sản phẩm !</h4>
+
+        </div>
+    </main>
+
+</div>

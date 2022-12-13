@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic(main)">
+  <head>
+    <meta charset="UTF-8" />
+
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Latest compiled JavaScript -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+      <script
+              src="https://code.jquery.com/jquery-3.6.1.js"
+              integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+              crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+      <title>Java 6 Project</title>
+
+  </head>
+  <body class="container" ng-app="shopping-cart-app" ng-controller="shopping-cart-ctrl">
+    <header class="row">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img th:src="@{/image/banner1.png}" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img th:src="@{/image/banner1.png}" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+    <nav class="row">
+        <div th:replace="/layout/_menu"></div>
+    </nav>
+    <div class="row">
+        <article class="col-sm-9">
+            <main class="row" th:insert="${main}"></main>
+        </article>
+        <aside class="col-sm-3">
+<!--            <div th:replace="/layout/_cart-info"></div>-->
+            <div th:replace="/layout/_category"></div>
+        </aside>
+    </div>
+
+    <footer  style="margin-top: 20px">
+        <div class="card ">
+            <div class="card-footer text-center">
+                <h3>FPT Polytechnic &copy; 2021. All rights reserved.</h3>
+            </div>
+        </div>
+    </footer>
+    <script th:src="@{/js/shopping-cart-app.js}"></script>
+
+  </body>
+</html>

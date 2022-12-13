@@ -1,0 +1,65 @@
+<div style="margin-top: 20px; ">
+    <div class="card ">
+        <div class="card-header bg-success text-Light">ĐƠN HÀNG ĐANG CHỜ XÁC NHẬN</div>
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+
+                    <th>MÃ ĐƠN HÀNG</th>
+                    <th>NGÀY ĐẶT HÀNG</th>
+                    <th>ĐỊA CHỈ</th>
+                    <th>TÌNH TRẠNG</th>
+
+                    <th>XEM THÔNG TIN</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="order in orderPending " isoatom>
+
+                    <td>{{order.id}}</td>
+                    <td>{{order.createDate}}</td>
+                    <td>{{order.address}}</td>
+                    <td> <button ng-click="orderStatus_changed(order.id)" class="btn btn-success ">Xác Nhận</button></td>
+                    <td><button type="button"  ng-click="show_order_details(order.id)"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> Xem Thông Tin</button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Đơn Hàng</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr  ng-repeat="order in orderDetails "  >
+                                                    <td >{{order.product.name}}</td>
+                                                    <td class="text-danger">${{order.product.price}}</td>
+                                                    <td>{{order.quantity}}</td>
+                                                    <td class="text-danger">${{order.product.price * order.quantity}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

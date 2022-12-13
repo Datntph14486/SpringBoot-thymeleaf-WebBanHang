@@ -1,0 +1,21 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top: 20px; ">
+  <li class="nav-item" role="presentation">
+    <button style="color: black" class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">PENDING</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button style="color: black" class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">CONFIRMED</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button style="color: black" class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#profile1" type="button" role="tab" aria-controls="profile" aria-selected="false">DELIVERING</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button style="color: black" class="nav-link" id="order-tab" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">SUCCESSFUL</button>
+  </li>
+
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab"><div ng-include="'/admin/order/_orderPending.html'"></div></div>
+  <div  class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div ng-include="'/admin/order/_orderConfirmed.html'"></div></div>
+  <div  class="tab-pane fade" id="profile1" role="tabpanel" aria-labelledby="nav-contact-tab"><div ng-include="'/admin/order/_orderDelivering.html'"></div></div>
+  <div  class="tab-pane fade" id="profile2" role="tabpanel" aria-labelledby="order-tab"><div ng-include="'/admin/order/_orderSuccessful.html'"></div></div>
+</div>

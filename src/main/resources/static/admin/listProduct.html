@@ -1,0 +1,49 @@
+<!--<!DOCTYPE html>-->
+
+
+<body>
+<div  xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index ::dynamic(~{::main})}">
+  <main>
+    <div class="row ">
+      <table class="table table-condensed">
+        <thead class="bg-success" style="font-variant: small-caps;">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Date</th>
+          <th>Image</th>
+          <th>Category</th>
+          <th>Available?</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in pager.items">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.price | number : 2}}</td>
+          <td>{{item.createDate | date : 'dd-MM-yyyy'}}</td>
+          <td>{{item.image}}</td>
+          <td>{{item.category.name}}</td>
+          <td>{{item.available?'Yes':'No'}}</td>
+          <td>
+            <div class="btn-group btn-group-xs">
+              <a ng-click="edit(item)" href="" class="btn btn-warning">
+                <b class="glyphicon glyphicon-edit"></b>
+              </a>
+              <a ng-click="delete(item)" href="" class="btn btn-danger">
+                <b class="glyphicon glyphicon-trash"></b>
+              </a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+</body>
+
+<!--</html>-->

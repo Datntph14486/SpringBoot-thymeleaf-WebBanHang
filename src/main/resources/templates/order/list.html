@@ -1,0 +1,37 @@
+
+<div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+    <main style="margin-top: 20px; ">
+        <div class="card ">
+            <div class="card-header bg-success text-Light">ĐƠN HÀNG ĐÃ ĐẶT</div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>SỐ</th>
+                        <th>MÃ ĐƠN HÀNG</th>
+                        <th>NGÀY ĐẶT HÀNG</th>
+                        <th>ĐỊA CHỈ</th>
+                        <th>TÌNH TRẠNG</th>
+                        <th>THÔNG TIN</th>
+
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order, state: ${orders}">
+                        <td>[[${state.index}]]</td>
+                        <td>[[${order.id}]]</td>
+                        <td>[[${order.createDate}]]</td>
+                        <td>[[${order.address}]]</td>
+
+
+                        <td>[[${order.status}]]</td>
+                        <td><button  class="btn btn-success ml-auto"><a th:href="@{|/order/detail/${order.id}|}"> <i style="color: aliceblue" class="bi bi-search"></i></a> </button></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
